@@ -8,3 +8,6 @@ group :development, :test do
   gem "rubocop", "~> 0.24.1", require: false
 end
 
+group :ruby211 do
+  gem "rubocop", "~> 0.17.0"
+end
