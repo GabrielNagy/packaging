@@ -7,7 +7,3 @@ group :development, :test do
   gem "win32console", platforms: [:mingw_18, :mingw_19]
   gem "rubocop", "~> 0.24.1", require: false
 end
-
-group :ruby211 do
-  gem "rubocop", "~> 0.17.0"
-end

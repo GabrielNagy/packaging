@@ -47,15 +47,15 @@ release-engineering/packaging-build:
     - rvm list
     - ruby -v
     - gem install bundler
-    - bundle install --jobs=3 --retry=3 --with ruby211
+    - bundle install --jobs=3 --retry=3
     - rvm list
     - echo "===== Executing bundle exec rspec ====="
     - bundle exec rspec spec --color --format documentation --order random
-    - VARRUBY="$(ruby -v || true)"
-    - if [[ ${VARRUBY:0:10} == "ruby 2.1.1" ]]; then
-    -   echo "===== Executing bundle exec rubocop -D ====="
-    -   bundle exec rubocop -D
-    - fi
+    # VARRUBY="$(ruby -v || true)"
+    # if [[ ${VARRUBY:0:10} == "ruby 2.1.1" ]]; then
+    #   echo "===== Executing bundle exec rubocop -D ====="
+    #   bundle exec rubocop -D
+    # fi
 
   AfterBuildSuccess:
   # This section occurs after the manifest Build section is successful.
