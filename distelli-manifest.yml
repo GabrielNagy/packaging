@@ -2,71 +2,11 @@ release-engineering/packaging-build:
 # This Basic Distelli Manifest assumes the following has been provisioned on
 # the destination deploy server:
 # OS: Ubuntu
+  PkgInclude:
+    - bdd/*.rb
+    - bdd/*.log
 
-  PreBuild:
-  # This section is used to install and/or configure any build requirements.
-  # NOTE: The application environment variables are not available during this phase of the manifest.
-    - if [[ -a ~/.rvm/scripts/rvm  ]]; then
-    -   echo "===== rvm is already installed ====="
-    - else
-    -   echo "===== Installing rvm from rvm.io ====="
-    -   gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
-    -   curl -sSL https://get.rvm.io | bash -s stable --ruby
-    - fi
-
-  Build:
-  # This section of the manifest specifies the build and test instructions for the application.
-  # Literal multiline yaml style: (pipe) character, keeps newlines and spacing as-is.
-  # Folded multiline yaml style: > character, replaces newlines with spaces and concatenates the lines.
-  # NOTE:MUST FIND WAY TO GRACEFULLY ITERATE RUBY VERSIONS, this feels super ugly!
-    - source ~/.rvm/scripts/rvm
-    #Ruby 1.9.3
-    - echo "===== Installing ruby 1.9.3 ====="
-    - rvm install ruby-1.9.3 || true
-    - rvm use 1.9.3
-    - rvm list
-    - ruby -v
-    - gem install bundler
-    - bundle install --jobs=3 --retry=3
-    - echo "===== Executing bundle exec rspec ====="
-    - bundle exec rspec spec --color --format documentation --order random
-    #Ruby 2.0.0
-    - echo "===== Installing ruby 2.0.0 ====="
-    - rvm install ruby-2.0.0 || true
-    - rvm use 2.0.0
-    - rvm list
-    - ruby -v
-    - gem install bundler
-    - bundle install --jobs=3 --retry=3
-    - echo "===== Executing bundle exec rspec ====="
-    - bundle exec rspec spec --color --format documentation --order random
-    #Ruby 2.1.1
-    - echo "===== Installing ruby 2.1.1 ====="
-    - rvm install ruby-2.1.1 || true
-    - rvm use 2.1.1
-    - rvm list
-    - ruby -v
-    - gem install bundler
-    - bundle install --jobs=3 --retry=3
-    - rvm list
-    - echo "===== Executing bundle exec rspec ====="
-    - bundle exec rspec spec --color --format documentation --order random
-    # VARRUBY="$(ruby -v || true)"
-    # if [[ ${VARRUBY:0:10} == "ruby 2.1.1" ]]; then
-    #   echo "===== Executing bundle exec rubocop -D ====="
-    #   bundle exec rubocop -D
-    # fi
-
-  AfterBuildSuccess:
-  # This section occurs after the manifest Build section is successful.
-  # NOTE: The application environment variables are not available during this phase of the manifest.
-    - echo "===== Build Success ====="
-    - DATE=$(date +"%Y%m%d%H%M%S%N")
-    - touch BuildSuccess.$DATE
-
-  AfterBuildFailure:
-  # This section occurs if the manifest Build section fails on any step.
-  # NOTE: The application environment variables are not available during this phase of the manifest.
-    - echo "===== Build Failure ====="
-    - DATE=$(date +"%Y%m%d%H%M%S%N")
-    - touch BuildFailure.$DATE
+  Start:
+    - echo "Begin Start within distelli-manifest.yml"
+    - time ./bdd/codetest.rb -r 1.9.3
+    - echo "End Start within distelli-manifest.yml"
