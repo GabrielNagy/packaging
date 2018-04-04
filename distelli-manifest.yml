@@ -3,10 +3,8 @@ release-engineering/packaging-build:
 # the destination deploy server:
 # OS: Ubuntu
   PkgInclude:
-    - bdd/*.rb
+    - bdd/codetest
     - bdd/*.log
 
   Build:
-    - echo "Begin Start within distelli-manifest.yml"
-    - time ./bdd/codetest.rb -r 1.9.3
-    - echo "End Start within distelli-manifest.yml"
+    - ./bdd/codetest -r 1.9.3
