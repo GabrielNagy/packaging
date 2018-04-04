@@ -103,6 +103,8 @@ system "ls -la /home/distelli/.gnupg/"
 LogIt.log.info "which rvm"
 system "which rvm"
 
+LogIt.log.info "Does this thing exist???"
+system "ls -la #{rvm_config}"
 ensure_rvm
 
 source_file(rvm_config)
