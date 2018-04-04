@@ -6,7 +6,7 @@ release-engineering/packaging-build:
     - bdd/*.rb
     - bdd/*.log
 
-  Start:
+  Build:
     - echo "Begin Start within distelli-manifest.yml"
     - time ./bdd/codetest.rb -r 1.9.3
     - echo "End Start within distelli-manifest.yml"
