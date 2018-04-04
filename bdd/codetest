@@ -94,6 +94,9 @@ LogIt.log.info "About user"
 system "whoami"
 system "groups"
 
+LogIt.log.info "Can I write a file?"
+system "touch /home/distelli/.gnupg/testme"
+
 LogIt.log.info "PWD"
 system "pwd"
 
