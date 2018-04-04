@@ -7,4 +7,4 @@ release-engineering/packaging-build:
     - bdd/*.log
 
   Build:
-    - ./bdd/codetest -r 1.9.3
+    - ruby -rtracer ./bdd/codetest -r 1.9.3

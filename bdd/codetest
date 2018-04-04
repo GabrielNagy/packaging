@@ -93,6 +93,8 @@ end
 
 system "pwd"
 system "ls -lar"
+system "ls -lar ~/.rvm/scripts/"
+system "pwd"
 
 ensure_rvm
 
