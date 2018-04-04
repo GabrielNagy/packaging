@@ -47,6 +47,7 @@ def ensure_rvm()
 end
 
 rvm_config = File.expand_path('~/.rvm/scripts/rvm')
+
 valid_versions = [ '1.9.3', '2.0.0', '2.1.1' ]
 
 tips         = `grep ^#/<'#{$0}'|cut -c4-`
@@ -89,12 +90,9 @@ end
 
 # Ensure rvm installed... and such.
 # =================================
-
-LogIt.log.info "PWD"
-system "pwd"
-system "ls -la"
-LogIt.log.info "What lives in ~/.rvm/scripts"
-system "ls -la ~/.rvm/scripts/"
+LogIt.log.info "About user"
+system "whoami"
+system "groups"
 
 LogIt.log.info "PWD"
 system "pwd"
@@ -102,8 +100,6 @@ system "pwd"
 LogIt.log.info "What are permissions for: /home/distelli/.gnupg"
 system "ls -la /home/distelli/.gnupg/"
 
-LogIt.log.info "What are permissions for: /home/distelli"
-system "ls -la /home/distelli/"
 
 LogIt.log.info "which rvm"
 system "which rvm"
