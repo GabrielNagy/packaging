@@ -92,13 +92,18 @@ end
 
 LogIt.log.info "PWD"
 system "pwd"
-system "ls -lar"
+system "ls -la"
 LogIt.log.info "What lives in ~/.rvm/scripts"
-system "ls -lar ~/.rvm/scripts/"
+system "ls -la ~/.rvm/scripts/"
 
 LogIt.log.info "PWD"
 system "pwd"
+
+LogIt.log.info "What are permissions for: /home/distelli/.gnupg"
 system "ls -la /home/distelli/.gnupg/"
+
+LogIt.log.info "What are permissions for: /home/distelli"
+system "ls -la /home/distelli/"
 
 LogIt.log.info "which rvm"
 system "which rvm"
