@@ -38,7 +38,6 @@ def source_file(file)
 end
 
 def ensure_rvm()
-  system "which rvm"
   LogIt.log.info "Installing rvm from rvm.io"
   system "gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB"
   error("Unable to import keys from a keyserver using gpg", $?.exitstatus) if $?.exitstatus > 0
@@ -91,10 +90,18 @@ end
 # Ensure rvm installed... and such.
 # =================================
 
+LogIt.log.info "PWD"
 system "pwd"
 system "ls -lar"
+LogIt.log.info "What lives in ~/.rvm/scripts"
 system "ls -lar ~/.rvm/scripts/"
+
+LogIt.log.info "PWD"
 system "pwd"
+system "ls -la /home/distelli/.gnupg/"
+
+LogIt.log.info "which rvm"
+system "which rvm"
 
 ensure_rvm
 
